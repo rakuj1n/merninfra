@@ -1,6 +1,6 @@
 const BASE_URL = '/api/users'
 
-export default async function signUp(userData) {
+export async function signUp(userData) {
     console.log("users-api")
     const res = await fetch(BASE_URL, {
         method: 'POST',
@@ -8,6 +8,7 @@ export default async function signUp(userData) {
         body: JSON.stringify(userData)
     })
     if (res.ok) {
+        console.log("post successful")
         return res.json()
     } else {
         throw new Error('Invalid Sign Up')

@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { signUp } from '../../utilities/users-service'
+import { signUp } from '../../utilities/users-service';
 
 export default class SignUpForm extends Component {
 
@@ -24,10 +24,12 @@ export default class SignUpForm extends Component {
             const formData = {...this.state}
             delete formData.error
             delete formData.confirm
+            console.log('is this a butterfly')
             const user = await signUp(formData)
             console.log(user)
-        } catch (err) {
-            this.setState({error:err})
+        } catch {
+          console.log("huh?")
+            this.setState({ error: 'Sign Up Failed - Try Again' })
         }
 
     }
