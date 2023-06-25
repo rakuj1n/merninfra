@@ -1,5 +1,6 @@
 import { Component } from "react";
 import { signUp } from '../../utilities/users-service';
+import { Link } from "react-router-dom";
 
 export default class SignUpForm extends Component {
 
@@ -24,9 +25,8 @@ export default class SignUpForm extends Component {
             const formData = {...this.state}
             delete formData.error
             delete formData.confirm
-            console.log('is this a butterfly')
             const user = await signUp(formData)
-            console.log(user)
+            this.props.setUser(user)
         } catch {
           console.log("huh?")
             this.setState({ error: 'Sign Up Failed - Try Again' })
@@ -52,6 +52,7 @@ export default class SignUpForm extends Component {
               </form>
             </div>
             <p className="error-message">&nbsp;{this.state.error}</p>
+            <Link to='' onClick={this.props.handleAlreadyUser}>Already a user?</Link>
           </div>
         );
       }
